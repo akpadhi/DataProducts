@@ -1,0 +1,62 @@
+---
+title: "Analysis of Cats Data"
+author: "Akshaya Padhi"
+date: "6/3/2017"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Shine App
+
+Find the shinyApp at:
+https://akpadhi.shinyapps.io/assignment_wk4/
+
+* Cats K-means clusting based on the "cats" data from library MASS.
+* To use this application, select x and y variables.  
+* Choice boxes include Body Weight (Bwt) and Heart weight (Hwt) as options.  
+* Slide the the slider to chose the number of clusturs.
+
+
+
+## Anatomical Data from Domestic Cats
+###Description
+The heart and body weights of samples of male and female cats used for digitalis experiments. The cats were all adult, over 2 kg body weight.
+
+This data frame contains the following columns:
+
+- Sex: Factor with evels "F" and "M"
+- Bwt: body weight in kg
+- Hwt: heart weight in g
+
+## Slide with R Output
+
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+require(dplyr)
+require(ggplot2)
+require(GGally)
+require(MASS)
+data(cats)
+
+```
+
+```{r echo = TRUE}
+head(cats)
+```
+
+## Exploratory Analysis of the Data
+
+
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+
+ggpairs(cats, lower = list(continuous = wrap("smooth")), ggplot2::aes(colour=Sex))+
+    ggtitle("Analysis of Cats Data")+theme_bw() +
+    theme(
+                             plot.title = element_text(size = rel(1.8), 
+                                                       color = "black", face = "bold", hjust = 0.5),
+                             plot.margin = unit(c(0.5,0.5,0.5,0.5), "cm"))
+                             
+```
+
